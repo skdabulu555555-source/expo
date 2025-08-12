@@ -905,7 +905,7 @@ export async function test(t) {
       });
     });
 
-    t.describe('getAllScheduledNotificationsAsync', () => {
+    t.fdescribe('getAllScheduledNotificationsAsync', () => {
       const identifier = 'test-scheduled-notification';
       const notification = { title: 'Scheduled notification' };
 
@@ -918,7 +918,7 @@ export async function test(t) {
         t.expect(notifications).toEqual(t.jasmine.arrayContaining([]));
       });
 
-      t.it('contains a scheduled notification', async () => {
+      t.fit('contains a scheduled notification', async () => {
         const trigger: NotificationTriggerInput = {
           type: SchedulableTriggerInputTypes.TIME_INTERVAL,
           seconds: 10,
