@@ -14,6 +14,9 @@ export default function ShareLinkScreen() {
         <Section title="Default">
           <ShareLink item="https://docs.expo.dev/versions/latest/sdk/ui/" />
         </Section>
+        <Section title="Async Item">
+          <ShareLink getItemAsync={() => Promise.resolve('https://expo.dev')} />
+        </Section>
         <Section title="With Subject and Message">
           <ShareLink
             item="https://docs.expo.dev/versions/latest/sdk/ui/"

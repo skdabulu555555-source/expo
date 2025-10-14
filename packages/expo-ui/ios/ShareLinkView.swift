@@ -17,15 +17,17 @@ final class ShareLinkViewProps: ExpoSwiftUI.ViewProps, CommonViewModifierProps {
   @Field var subject: String?
   @Field var message: String?
   @Field var preview: Preview?
+  var onRequestItem = EventDispatcher()
 }
 
 struct ShareLinkView: ExpoSwiftUI.View {
   @ObservedObject var props: ShareLinkViewProps
 
   var body: some View {
+    let item = props.item ?? URL(fileURLWithPath: "")
 #if !os(tvOS)
     Group {
-      if #available(iOS 16.0, *), let item = props.item {
+      if #available(iOS 16.0, *) {
         let hasChildren = props.children?.isEmpty == false
 
         let subject = props.subject.map { Text($0) }
@@ -43,6 +45,11 @@ struct ShareLinkView: ExpoSwiftUI.View {
           ) {
             Children()
           }
+          .onAppear {
+            if props.item == nil {
+              props.onRequestItem([:])
+            }
+          }
           .modifier(CommonViewModifiers(props: props))
         } else {
           shareLink(
@@ -51,6 +58,11 @@ struct ShareLinkView: ExpoSwiftUI.View {
             message: message,
             preview: preview
           )
+          .onAppear {
+            if props.item == nil {
+              props.onRequestItem([:])
+            }
+          }
           .modifier(CommonViewModifiers(props: props))
         }
       }
