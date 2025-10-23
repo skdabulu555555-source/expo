@@ -8,6 +8,8 @@
 
 ### 🐛 Bug fixes
 
+- [Android] Fixed retrieving recurrence rules information.
+
 ### 💡 Others
 
 - [Android] Refactored module native code.
