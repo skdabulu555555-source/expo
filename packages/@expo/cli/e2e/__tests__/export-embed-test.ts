@@ -1,5 +1,4 @@
 /* eslint-env jest */
-import { resolveRelativeEntryPoint } from '@expo/config/paths';
 import fs from 'fs';
 import path from 'path';
 
@@ -95,8 +94,6 @@ it('runs `npx expo export:embed`', async () => {
     projectRoot,
     [
       'export:embed',
-      '--entry-file',
-      resolveRelativeEntryPoint(projectRoot, { platform: 'ios' }),
       '--bundle-output',
       `./${output}/output.js`,
       '--assets-dest',
@@ -154,8 +151,6 @@ it('runs `npx expo export:embed --platform ios` with source maps', async () => {
     projectRoot,
     [
       'export:embed',
-      '--entry-file',
-      resolveRelativeEntryPoint(projectRoot, { platform: 'ios' }),
       '--bundle-output',
       `./${output}/output.js`,
       '--assets-dest',
@@ -216,8 +211,6 @@ it('runs `npx expo export:embed --platform ios` with a robot user', async () => 
     projectRoot,
     [
       'export:embed',
-      '--entry-file',
-      resolveRelativeEntryPoint(projectRoot, { platform: 'ios' }),
       '--bundle-output',
       `./${output}/output.js`,
       '--assets-dest',
@@ -277,8 +270,6 @@ it('runs `npx expo export:embed --platform android` with source maps', async () 
     // --sourcemap-output /Users/cedric/Desktop/test-expo-29656/android/app/build/intermediates/sourcemaps/react/release/index.android.bundle.packager.map --minify false
     [
       'export:embed',
-      '--entry-file',
-      resolveRelativeEntryPoint(projectRoot, { platform: 'android' }),
       '--bundle-output',
       `./${output}/output.js`,
       '--assets-dest',
@@ -357,9 +348,9 @@ it('runs `npx expo export:embed --platform android` with relative paths', async 
     // --sourcemap-output /Users/cedric/Desktop/test-expo-29656/android/app/build/intermediates/sourcemaps/react/release/index.android.bundle.packager.map --minify false
     [
       'export:embed',
-      '--entry-file',
       // This has to be the relative entry path, pointing to any file within the workspace
       // It's also what React Native will provide by default.
+      '--entry-file',
       'index.js',
       '--bundle-output',
       // This is what React Native provides by default, prefixed by `output`
@@ -431,8 +422,6 @@ it('runs `npx expo export:embed --bytecode`', async () => {
     projectRoot,
     [
       'export:embed',
-      '--entry-file',
-      resolveRelativeEntryPoint(projectRoot, { platform: 'ios' }),
       '--bundle-output',
       `./${output}/output.js`,
       '--assets-dest',
